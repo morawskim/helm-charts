@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mitmproxy-{{ .Release.Name }}
+spec:
+  selector:
+    app: mitmweb-{{ .Release.Name }}
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mitmweb-{{ .Release.Name }}
+spec:
+  selector:
+    app: mitmweb-{{ .Release.Name }}
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8081
+      protocol: TCP
