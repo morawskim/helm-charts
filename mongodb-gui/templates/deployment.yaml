@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-gui-{{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-gui-{{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: mongodb-gui-{{ .Release.Name }}
+    spec:
+      containers:
+        - name: mongodb-php-gui
+          image: samueltallet/mongodb-php-gui
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              memory: "64Mi"
+            limits:
+              memory: "64Mi"
