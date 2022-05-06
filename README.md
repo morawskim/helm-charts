@@ -13,3 +13,7 @@ To uninstall release:
 
 Using via curl in other namespace:
 `https_proxy=mitmproxy-<RELEASE_NAME>.<NAMESPACE>:8080 curl -k -X POST -H "Content-Type: application/json" -d '{"name": "John HTTPS"}' https://hookb.in/<ID>`
+
+### mongodb-gui
+
+See instruction for mitmproxy.
