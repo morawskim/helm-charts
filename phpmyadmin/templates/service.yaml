@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin-{{ .Release.Name }}
+spec:
+  selector:
+    app: phpmyadmin-{{ .Release.Name }}
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
