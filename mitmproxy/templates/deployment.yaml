@@ -19,6 +19,10 @@ spec:
             - mitmweb
             - --web-host
             - 0.0.0.0
+{{- if .Values.allowGlobalIps }}
+            - --set
+            - block_global=false
+{{- end }}
           ports:
             - containerPort: 8080
             - containerPort: 8081

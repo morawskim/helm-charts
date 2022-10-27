@@ -8,6 +8,15 @@ First create namespace `mitmproxy`, if not exists
 Install chart in namespace `mitmproxy` and release name set to `dev`
 `helm install -n mitmproxy dev ./mitmproxy`
 
+Upgrade chart in namespace `mitmproxy` and release `dev`
+`helm upgrade -n mitmproxy dev ./mitmproxy/`
+
+When you install this chart in cluster with ipv6 set parameter `allowGlobalIps` to value `true`:
+`helm upgrade --set allowGlobalIps=true -n mitmproxy dev ./mitmproxy/`
+
+To render chart template without applying changes run this command:
+`helm upgrade --dry-run --debug --set allowGlobalIps=true -n mitmproxy dev ./mitmproxy/`
+
 To uninstall release:
 `helm uninstall -n mitmproxy dev`
 

@@ -1,3 +1,5 @@
 # Default values for mitmproxy.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+
+allowGlobalIps: false
