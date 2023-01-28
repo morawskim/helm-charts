@@ -34,3 +34,7 @@ To install with different redis host value:
 `helm install --set redis=redis.othernamespace:6379 -n utils dev ./redis-commander/`
 
 **WARNING** At the moment redis-commander will  not be able to connect to redis that listening on Ipv6 interface.
+
+### adminer
+
+See instruction for mitmproxy.
