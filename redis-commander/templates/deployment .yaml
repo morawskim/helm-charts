@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rediscommander-{{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rediscommander-{{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: rediscommander-{{ .Release.Name }}
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      containers:
+        - name: rediscommander
+          image: rediscommander/redis-commander:latest
+          env:
+            - name: REDIS_HOSTS
+              value: "local:{{ .Values.redis }}"
+          ports:
+            - containerPort: 8081
+          resources:
+            requests:
+              memory: "64Mi"
+            limits:
+              memory: "64Mi"

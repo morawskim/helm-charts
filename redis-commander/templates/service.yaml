@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rediscommander-{{ .Release.Name }}
+spec:
+  selector:
+    app: rediscommander-{{ .Release.Name }}
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8081
+      protocol: TCP
