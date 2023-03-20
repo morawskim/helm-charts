@@ -20,6 +20,8 @@ spec:
           env:
             - name: REDIS_HOSTS
               value: "local:{{ .Values.redis }}"
+            - name: URL_PREFIX
+              value: {{ .Values.url_prefix }}
           ports:
             - containerPort: 8081
           resources:
