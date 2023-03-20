@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: phpmyadmin-{{ .Release.Name }}
+  name: phpmyadmin
 spec:
   selector:
     app: phpmyadmin-{{ .Release.Name }}
