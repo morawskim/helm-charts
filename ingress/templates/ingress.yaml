@@ -6,7 +6,10 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: "{{ .Values.host }}"
+  -
+    {{- if ne .Values.host "*" }}
+    host: "{{ .Values.host }}"
+    {{- end }}
     http:
       paths:
       - backend:
@@ -23,6 +26,14 @@ spec:
             port:
               number: 80
         path: /_redis
+        pathType: Prefix
+
+      - backend:
+          service:
+            name: phpmyadmin-caddy
+            port:
+              number: 80
+        path: /_phpmyadmin
         pathType: Prefix
 
       - backend:

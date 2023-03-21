@@ -38,3 +38,7 @@ To install with different redis host value:
 ### adminer
 
 See instruction for mitmproxy.
+
+### phpMyAdmin
+
+`helm install --set phpmyadmin_absolute_url=http://192.168.49.2/_phpmyadmin/ -n utils phpmyadmin ./phpmyadmin/`

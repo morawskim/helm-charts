@@ -1,0 +1,60 @@
+apiVersion: v1
+data:
+  Caddyfile: |
+    :8080 {
+      uri strip_prefix /_phpmyadmin
+      reverse_proxy phpmyadmin:80
+    }
+kind: ConfigMap
+metadata:
+  name: phpmyadmin-caddy
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin-caddy-{{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin-caddy-{{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin-caddy-{{ .Release.Name }}
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      containers:
+        - name: caddy
+          image: caddy:2.6
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/caddy/
+          resources:
+            requests:
+              memory: "16Mi"
+            limits:
+              memory: "64Mi"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: phpmyadmin-caddy
+            items:
+              - key: Caddyfile
+                path: Caddyfile
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin-caddy
+spec:
+  selector:
+    app: phpmyadmin-caddy-{{ .Release.Name }}
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
