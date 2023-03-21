@@ -17,6 +17,7 @@ spec:
       containers:
         - name: mongodb-php-gui
           image: samueltallet/mongodb-php-gui
+          command: ["php", "-S", "[::]:5000"]
           ports:
             - containerPort: 5000
           resources:

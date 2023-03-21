@@ -18,10 +18,12 @@ spec:
         - name: rediscommander
           image: ghcr.io/joeferner/redis-commander:latest
           env:
-            - name: REDIS_HOSTS
-              value: "local:{{ .Values.redis }}"
+            - name: REDIS_HOST
+              value: "{{ .Values.redis }}"
             - name: URL_PREFIX
               value: {{ .Values.url_prefix }}
+            - name: ADDRESS
+              value: '::'
           ports:
             - containerPort: 8081
           resources:

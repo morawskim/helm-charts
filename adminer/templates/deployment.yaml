@@ -17,7 +17,7 @@ spec:
       containers:
         - name: adminer
           image: thecodingmachine/php:7.4-v4-cli
-          command: ["/usr/bin/php", "-S0:5000", "-t", "/usr/src/app"]
+          command: ["/usr/bin/php", "-S[::]:5000", "-t", "/usr/src/app"]
           ports:
             - containerPort: 5000
           env:
